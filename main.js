@@ -1,11 +1,14 @@
 const form = document.getElementById('addForm');
-const itemsList = document.getElementById('items');
+const unorderedList = document.getElementById('items');
+// const itemsCollection = document.getElementsByTagName('li');
 
 form.addEventListener('submit', addItem);
+unorderedList.addEventListener('click', removeItem);
 
 // Add Item to List
-function addItem(e) {
-  e.preventDefault();
+function addItem(evt) {
+  evt.preventDefault();
+
   const input = document.getElementById('item').value;
   const li = document.createElement('li');
   li.className = 'list-group-item';
@@ -17,5 +20,10 @@ function addItem(e) {
   li.appendChild(document.createTextNode(input));
   li.appendChild(deleteBtn);
 
-  itemsList.appendChild(li);
+  unorderedList.insertBefore(li, unorderedList.firstChild);
+}
+
+// Remove Item
+function removeItem(evt) {
+  unorderedList.removeChild(evt.target.parentElement);
 }
