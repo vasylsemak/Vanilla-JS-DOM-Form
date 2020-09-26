@@ -29,7 +29,7 @@ function addItem(evt) {
 // Remove Item
 function removeItem(evt) {
   if (evt.target.classList.contains('delete')) {
-    if (confirm('Do you want to DELETE this itme?')) {
+    if (confirm('Do you want to DELETE this item?')) {
       unorderedList.removeChild(evt.target.parentElement);
     }
   }
@@ -37,17 +37,11 @@ function removeItem(evt) {
 
 // Filter List
 function filterList(evt) {
-  evt.preventDefault();
-
   Array.from(itemsList).forEach(item => {
-    let filterText = evt.key.toLowerCase();
-    let itemText = item.textContent.toLowerCase();
+    let filterText = evt.target.value.toLowerCase();
+    let itemText = item.firstChild.textContent.toLowerCase();
 
     if (itemText.indexOf(filterText) !== -1) item.style.display = 'block';
     else item.style.display = 'none';
   });
-
-  if (filter.value.length === 0) {
-    Array.from(itemsList).forEach(item => (item.style.display = 'block'));
-  }
 }
