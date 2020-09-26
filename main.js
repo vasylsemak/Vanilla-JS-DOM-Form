@@ -1,9 +1,12 @@
 const form = document.getElementById('addForm');
 const unorderedList = document.getElementById('items');
-// const itemsCollection = document.getElementsByTagName('li');
+const filter = document.getElementById('filter');
+const itemsList = document.getElementsByTagName('li');
 
+// Event Listeners
 form.addEventListener('submit', addItem);
 unorderedList.addEventListener('click', removeItem);
+filter.addEventListener('keyup', filterList);
 
 // Add Item to List
 function addItem(evt) {
@@ -26,4 +29,15 @@ function addItem(evt) {
 // Remove Item
 function removeItem(evt) {
   unorderedList.removeChild(evt.target.parentElement);
+}
+
+// Filter List
+function filterList(evt) {
+  Array.from(itemsList).forEach(item => {
+    let filterT = evt.key.toLowerCase();
+    let itemT = item.textContent.toLowerCase();
+
+    if (itemT.indexOf(filterT) !== -1) item.style.display = 'block';
+    else item.style.display = 'none';
+  });
 }
