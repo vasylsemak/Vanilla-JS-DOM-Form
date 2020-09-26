@@ -28,7 +28,11 @@ function addItem(evt) {
 
 // Remove Item
 function removeItem(evt) {
-  unorderedList.removeChild(evt.target.parentElement);
+  if (evt.target.classList.contains('delete')) {
+    if (confirm('Do you want to DELETE this itme?')) {
+      unorderedList.removeChild(evt.target.parentElement);
+    }
+  }
 }
 
 // Filter List
