@@ -33,11 +33,17 @@ function removeItem(evt) {
 
 // Filter List
 function filterList(evt) {
-  Array.from(itemsList).forEach(item => {
-    let filterT = evt.key.toLowerCase();
-    let itemT = item.textContent.toLowerCase();
+  evt.preventDefault();
 
-    if (itemT.indexOf(filterT) !== -1) item.style.display = 'block';
+  Array.from(itemsList).forEach(item => {
+    let filterText = evt.key.toLowerCase();
+    let itemText = item.textContent.toLowerCase();
+
+    if (itemText.indexOf(filterText) !== -1) item.style.display = 'block';
     else item.style.display = 'none';
   });
+
+  if (filter.value.length === 0) {
+    Array.from(itemsList).forEach(item => (item.style.display = 'block'));
+  }
 }
